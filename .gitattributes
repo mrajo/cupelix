@@ -1,0 +1,20 @@
+*.js text eol=lf
+*.coffee text eol=lf
+*.less text eol=lf
+*.css text eol=lf
+*.scss text eol=lf
+*.talk text eol=lf
+*.hangouts text eol=lf
+*.wow text eol=lf
+*.yml text eol=lf
+*.json text eol=lf
+*.template text eol=lf
+*.md text eol=lf
+
+*.jpg binary
+*.png binary
+*.gif binary
+*.eot binary
+*.svg binary
+*.ttf binary
+*.woff binary
