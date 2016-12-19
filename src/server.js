@@ -1,7 +1,7 @@
 'use strict';
 
 import * as Hapi from 'hapi'
-//import { good } from 'good'
+import * as good from 'good'
 import config from './config'
 import { argv } from './cli'
 import { loggingOptions } from './logging'
@@ -17,8 +17,7 @@ export function LunrSearchServer() {
 
   // plugins
   this.server.register({
-    // is it possible to not use require?
-    register: require('good'),
+    register: good,
     options: loggingOptions
   }, (err) => {
     if (err) {
