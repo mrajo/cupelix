@@ -2,14 +2,19 @@
 
 export const loggingOptions = {
   ops: {
-    interval: 1000
+    interval: 10000
   },
   reporters: {
     consoleReporter: [
       {
         module: 'good-squeeze',
         name: 'Squeeze',
-        args: [ { log: '*', response: '*' } ]
+        args: [
+          {
+            log: '*',
+            response: '*'
+          }
+        ]
       },
       {
         module: 'good-console'
@@ -20,7 +25,11 @@ export const loggingOptions = {
       {
         module: 'good-squeeze',
         name: 'Squeeze',
-        args: [ { ops: '*' } ]
+        args: [
+          {
+            ops: '*'
+          }
+        ]
       },
       {
         module: 'good-squeeze',
@@ -35,7 +44,12 @@ export const loggingOptions = {
       {
         module: 'good-squeeze',
         name: 'Squeeze',
-        args: [ { error: '*' } ]
+        args: [
+          {
+            error: '*',
+            request: 'error'
+          }
+        ]
       },
       {
         module: 'good-squeeze',
@@ -50,7 +64,14 @@ export const loggingOptions = {
       {
         module: 'good-squeeze',
         name: 'Squeeze',
-        args: [ { request: '*', response: '*' } ]
+        args: [
+          {
+            request: '*',
+            response: {
+              exclude: 'error'
+            }
+          }
+        ]
       },
       {
         module: 'good-squeeze',
@@ -65,7 +86,11 @@ export const loggingOptions = {
       {
         module: 'good-squeeze',
         name: 'Squeeze',
-        args: [ { log: '*' } ]
+        args: [
+          {
+            log: '*'
+          }
+        ]
       },
       {
         module: 'good-squeeze',
