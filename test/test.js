@@ -9,23 +9,22 @@ describe('Hello', () => {
   it('should return 200 response', (done) => {
     api.get('/')
       .expect(200)
-      .expect('Content-Type', /text\/html/)
+      .expect('Content-Type', /json/)
       .end((err, res) => {
         expect(err).to.not.exist
-        expect(res.text).to.equal('Grittings. Ma nam is Kahlfin.')
+        expect(res.body.data).to.equal('Grittings. Ma nam is Kahlfin.')
         done()
       })
   })
 })
 
 describe('Search', () => {
-  it('should return 200 response on GET', (done) => {
+  it('should return 204 response on GET', (done) => {
     api.get('/search')
-      .expect(200)
-      .expect('Content-Type', /text\/html/)
+      .expect(204)
       .end((err, res) => {
         expect(err).to.not.exist
-        expect(res.text).to.equal('Search')
+        expect(res.body).to.be.empty
         done()
       })
   })

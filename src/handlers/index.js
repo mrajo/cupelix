@@ -6,5 +6,6 @@ import { search_route_map } from './search'
 
 export const handlers = {
   home: home_route_map,
-  error: error_route_map
+  error: error_route_map,
+  search: search_route_map
 }

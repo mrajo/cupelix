@@ -5,6 +5,7 @@ import { handlers } from './handlers/index'
 const setRoutes = (server, handlers) => {
   Object.keys(handlers).forEach((map) => {
     Object.keys(handlers[map].methods).forEach((method) => {
+      server.log([ 'info', 'startup' ], `Setting route at ${method.toUpperCase()} ${handlers[map].path}`)
       server.route({
         method: method,
         path: handlers[map].path,
