@@ -5,7 +5,7 @@ import * as good from 'good'
 import config from './config'
 import { argv } from './cli'
 import { loggingOptions } from './logging'
-// import { router } from './router'
+import { router } from './router'
 // import { SearchIndex, load_index } from './models'
 // import { logger, errorLogger } from './logger'
 
@@ -26,6 +26,11 @@ export function LunrSearchServer() {
   })
 
   // routes
+  this.server.register(router, (err) => {
+    if (err) {
+      throw err
+    }
+  })
 }
 
 LunrSearchServer.prototype.start = function () {
