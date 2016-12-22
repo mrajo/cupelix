@@ -5,6 +5,7 @@ import * as good from 'good'
 import config from './config'
 import { argv } from './cli'
 import { loggingOptions } from './logging'
+import { auth } from './auth'
 import { router } from './router'
 import { SearchIndex, load_index } from './model'
 
@@ -24,12 +25,26 @@ export function LunrSearchServer() {
     }
   })
 
-  // routes
-  this.server.register(router, (err) => {
+  // authentication
+  this.server.register(auth, (err) => {
     if (err) {
       throw err
     }
+
+    // routes must be registered after auth
+    this.server.register(router, (err) => {
+      if (err) {
+        throw err
+      }
+    })
   })
+
+  // why am i too stupid to grok the promise method?
+  // this.server.register(auth)
+  //   .then(this.server.register(router))
+  //   .catch((e) => {
+  //     console.log(e)
+  //   })
 }
 
 LunrSearchServer.prototype.start = function () {

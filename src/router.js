@@ -6,11 +6,21 @@ const setRoutes = (server, handlers) => {
   Object.keys(handlers).forEach((map) => {
     Object.keys(handlers[map].methods).forEach((method) => {
       server.log([ 'info', 'startup' ], `Setting route at ${method.toUpperCase()} ${handlers[map].path}`)
-      server.route({
-        method: method,
-        path: handlers[map].path,
-        handler: handlers[map].methods[method]
-      })
+
+      if (typeof handlers[map].methods[method] == 'function') {
+        server.route({
+          method: method,
+          path: handlers[map].path,
+          handler: handlers[map].methods[method]
+        })
+      } else {
+        server.route({
+          method: method,
+          path: handlers[map].path,
+          handler: handlers[map].methods[method].handler,
+          config: handlers[map].methods[method].config
+        })
+      }
     })
   })
 }
@@ -18,6 +28,7 @@ const setRoutes = (server, handlers) => {
 export const router = {
   register: (server, options, next) => {
     setRoutes(server, handlers)
+    server.log([ 'info', 'startup' ], 'Router plugin registered.')
     next()
   }
 }
