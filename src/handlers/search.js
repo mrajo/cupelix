@@ -9,10 +9,12 @@ export const search_route_map = {
     post: {
       handler: (request, reply) => {
         const index = request.server.app.index
+        console.log(request.payload)
         reply(index.search(request.payload.q, request.payload.config))
       },
       config: {
-        auth: 'simple'
+        auth: 'simple',
+        cors: true
       }
     }
   }
