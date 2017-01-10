@@ -12,7 +12,7 @@ const validate = (request, username, password, callback) => {
   }
 
   bcrypt.compare(password, user.password, (err, isMatched) => {
-      callback(err, isMatched, { id: user.id, name: user.name })
+    callback(err, isMatched, { id: user.id, name: user.name })
   })
 }
 
