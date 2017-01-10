@@ -15,6 +15,6 @@ function prompt(question, callback) {
 }
 
 prompt('Enter password to hash: ', function (input) {
-	console.log(bcrypt.hashSync('zMw2a3XcSZHQ0p7ZozlCeKNGWyfc9T8Y', 10))
+	console.log(bcrypt.hashSync(input, 10))
 	process.exit()
 });
