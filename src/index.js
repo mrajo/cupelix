@@ -1,9 +1,9 @@
 'use strict'
 
-import { LunrSearchServer } from './server'
+import { Server } from './server'
 
 // disable elasticlunr warnings
 console.warn = null
 
-const app = new LunrSearchServer()
+const app = new Server()
 app.start()

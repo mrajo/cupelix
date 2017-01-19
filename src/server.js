@@ -9,7 +9,7 @@ import { auth } from './auth'
 import { router } from './router'
 import { SearchIndex, load_index } from './model'
 
-export function LunrSearchServer() {
+export function Server() {
   this.server = new Hapi.Server()
   this.server.app.config = Object.assign(config, argv)
   this.server.app.index = load_index(argv)
@@ -47,7 +47,7 @@ export function LunrSearchServer() {
   //   })
 }
 
-LunrSearchServer.prototype.start = function () {
+Server.prototype.start = function () {
   this.server.start((err) => {
     if (err) throw err
     const cfg = this.server.app.config

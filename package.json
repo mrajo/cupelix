@@ -1,7 +1,7 @@
 {
-  "name": "lunr-search-service",
-  "version": "1.0.0",
-  "description": "Lunr.js search web service",
+  "name": "Cupelix",
+  "version": "0.0.1",
+  "description": "A search engine web service powered by Elasticlunr.js",
   "main": "src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
