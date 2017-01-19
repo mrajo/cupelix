@@ -1,4 +1,4 @@
-  # cupelix [![Build Status](https://travis-ci.org/mrajo/cupelix.svg)](https://travis-ci.org/mrajo/cupelix)
+# cupelix [![Build Status](https://travis-ci.org/mrajo/cupelix.svg)](https://travis-ci.org/mrajo/cupelix)
 
 > A search engine web service powered by elasticlunr.js
 
