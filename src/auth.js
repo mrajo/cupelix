@@ -1,7 +1,7 @@
 'use strict'
 
 import fs from 'fs-extra'
-import * as bcrypt from 'bcrypt'
+import * as bcrypt from 'bcryptjs'
 import * as auth_basic from 'hapi-auth-basic'
 import { argv } from './cli'
 
