@@ -1,8 +1,21 @@
 'use strict'
 
+import fs from 'fs-extra'
 import * as bcrypt from 'bcrypt'
 import * as auth_basic from 'hapi-auth-basic'
-import { users } from '../data/auth.json'
+import { argv } from './cli'
+
+const auth_file = argv.auth
+let users
+
+const loadAuthFile = () => {
+  fs.readJson(auth_file, (err, auth) => {
+    if (err) console.error(err)
+    users = auth.users
+  })
+}
+
+loadAuthFile()
 
 const validate = (request, username, password, callback) => {
   const user = users[username]

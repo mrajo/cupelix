@@ -72,6 +72,14 @@ Example: `node dist/app.js --data path/to/file.ext`
 
 Loads the specified index instead of the default file loaded by `env` variable.
 
+### auth
+Type: `string`
+Default: `data/auth.json`
+
+Example: `node dist/app.js --auth /path/to/authfile.json`
+
+Loads the auth file database from another path.
+
 ## License
 
 MIT © [Anthony Castle](http://github.com/mrajo)
