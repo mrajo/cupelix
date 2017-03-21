@@ -34,6 +34,6 @@ export const router = {
 }
 
 router.register.attributes = {
-  name: 'LunrSearchServerRouter',
+  name: 'CupelixRouter',
   version: '1.0.0'
 }

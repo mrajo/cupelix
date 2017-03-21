@@ -44,6 +44,6 @@ export const auth = {
 }
 
 auth.register.attributes = {
-  name: 'LunrSearchServerAuthenticator',
+  name: 'CupelixAuthentication',
   version: '1.0.0'
 }
