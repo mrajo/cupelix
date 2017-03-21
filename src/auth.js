@@ -5,20 +5,12 @@ import * as bcrypt from 'bcryptjs'
 import * as auth_basic from 'hapi-auth-basic'
 import { argv } from './cli'
 
-const auth_file = argv.auth
-let users
-
-const loadAuthFile = () => {
-  fs.readJson(auth_file, (err, auth) => {
-    if (err) console.error(err)
-    users = auth.users
-  })
+export const loadAuthDb = (argv) => {
+  return fs.readJsonSync(argv.auth).users
 }
 
-loadAuthFile()
-
 const validate = (request, username, password, callback) => {
-  const user = users[username]
+  const user = request.server.app.users[username]
 
   if (!user) {
       return callback(null, false)
