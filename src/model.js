@@ -58,7 +58,7 @@ SearchIndex.prototype.add = function (doc) {
   this.index.addDoc(doc)
 }
 
-export const load_index = (argv) => {
+export const loadIndex = (argv) => {
   if (argv.data) {
     try {
       return new SearchIndex(argv.data)

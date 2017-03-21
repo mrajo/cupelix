@@ -7,12 +7,12 @@ import { argv } from './cli'
 import { loggingOptions } from './logging'
 import { auth, loadAuthDb } from './auth'
 import { router } from './router'
-import { SearchIndex, load_index } from './model'
+import { SearchIndex, loadIndex } from './model'
 
 export function Server() {
   this.server = new Hapi.Server()
   this.server.app.config = Object.assign(config, argv)
-  this.server.app.index = load_index(argv)
+  this.server.app.index = loadIndex(argv)
   this.server.app.users = loadAuthDb(argv)
   this.server.connection({ port: config.port })
 
