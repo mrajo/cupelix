@@ -39,13 +39,6 @@ export function Server() {
       }
     })
   })
-
-  // why am i too stupid to grok the promise method?
-  // this.server.register(auth)
-  //   .then(this.server.register(router))
-  //   .catch((e) => {
-  //     console.log(e)
-  //   })
 }
 
 Server.prototype.start = function () {
