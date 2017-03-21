@@ -1,6 +1,6 @@
 'use strict'
 
-var bcrypt = require('bcrypt')
+var bcrypt = require('bcryptjs')
 
 function prompt(question, callback) {
 	var stdin = process.stdin
@@ -17,4 +17,4 @@ function prompt(question, callback) {
 prompt('Enter password to hash: ', function (input) {
 	console.log(bcrypt.hashSync(input, 10))
 	process.exit()
-});
+})
