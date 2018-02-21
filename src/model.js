@@ -1,7 +1,7 @@
 'use strict'
 
-import elasticlunr from 'elasticlunr'
-import fs from 'fs-extra'
+const elasticlunr = require('elasticlunr')
+const fs = require('fs-extra')
 
 const SEARCH_CONFIG_DEFAULTS = {
   fields: {
@@ -25,7 +25,7 @@ export function SearchIndex(path) {
       }
     })
   } else {
-    this.index = elasticlunr(function () {
+    this.index = elasticlunr.elasticlunr(function () {
       this.addField('title')
       this.addField('body')
     })

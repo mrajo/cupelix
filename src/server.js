@@ -1,7 +1,6 @@
-'use strict';
+'use strict'
 
-import * as Hapi from 'hapi'
-import * as good from 'good'
+const Hapi = require('hapi')
 import config from './config'
 import { argv } from './cli'
 import { loggingOptions } from './logging'
@@ -18,7 +17,7 @@ export function Server() {
 
   // plugins
   this.server.register({
-    register: good,
+    register: require('good'),
     options: loggingOptions
   }, (err) => {
     if (err) {
@@ -39,6 +38,8 @@ export function Server() {
       }
     })
   })
+
+  return this.server
 }
 
 Server.prototype.start = function () {

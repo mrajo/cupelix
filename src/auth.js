@@ -1,8 +1,8 @@
 'use strict'
 
-import fs from 'fs-extra'
-import * as bcrypt from 'bcryptjs'
-import * as auth_basic from 'hapi-auth-basic'
+const fs = require('fs-extra')
+const bcrypt = require('bcryptjs')
+const auth_basic = require('hapi-auth-basic')
 import { argv } from './cli'
 
 export const loadAuthDb = (argv) => {

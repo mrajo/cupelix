@@ -1,6 +1,6 @@
 'use strict'
 
-import { argv as yargs } from 'yargs'
+const yargs = require('yargs').argv
 
 const ARGV_DEFAULTS = {
   env: 'prod',
