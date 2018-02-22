@@ -10,7 +10,7 @@ watch: node_modules bundle
 	@$(nodebin)supervisor dist/app.js
 
 test: node_modules
-	@$(nodebin)mocha -R spec
+	@$(nodebin)babel-tape-runner test/*.js
 
 serve: node_modules
 	@node dist/app.js
