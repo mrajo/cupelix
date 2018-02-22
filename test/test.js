@@ -1,20 +1,27 @@
 'use strict'
 
-const test = require('tape')
+import test from 'tape'
+import * as Hapi from 'hapi'
+import Server from '../src/server'
 
-describe('Hello', () => {
-  it('should return 200 response', (done) => {
-    api.get('/')
-      .end((err, res) => {
-        if (err) return done(err)
-        expect(res.statusCode).to.equal(200)
-        expect(res.type).to.equal('application/json')
-        expect(err).to.not.exist
-        expect(res.body.data).to.equal('Grittings. Ma nam is Kahlfin.')
-        done()
-      })
-  })
+const server = Server();
+
+test('Server object is valid', t => {
+  console.log(server);
+  t.ok(server);
 })
+
+// test('Root URL should return 200 response', (t) => {
+//   api.get('/')
+//     .end((err, res) => {
+//       if (err) return done(err)
+//       expect(res.statusCode).to.equal(200)
+//       expect(res.type).to.equal('application/json')
+//       expect(err).to.not.exist
+//       expect(res.body.data).to.equal('Grittings. Ma nam is Kahlfin.')
+//       done()
+//     })
+// });
 
 // describe('Authentication', () => {
 //   it('should return a 401 response on GET /user without credentials', (done) => {

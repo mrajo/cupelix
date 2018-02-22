@@ -1,4 +1,4 @@
-'use strict';
+'use strict'
 
 import * as Hapi from 'hapi'
 import * as good from 'good'

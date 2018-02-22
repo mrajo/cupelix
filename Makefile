@@ -1,5 +1,7 @@
 nodebin = node_modules/.bin/
 
+PHONY: bundle watch test serve
+
 node_modules: package.json
 	@yarn
 
