@@ -22,10 +22,10 @@ class Server {
     // plugins
     try {
       // logging
-      // await this.server.register({
-      //   register: good,
-      //   options: loggingOptions
-      // })
+      await this.server.register({
+        plugin: good,
+        options: loggingOptions
+      })
 
       // authentication
       await this.server.register(authPlugin)
