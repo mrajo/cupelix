@@ -1,10 +1,9 @@
 'use strict'
 
-import test from 'tape'
-import * as Hapi from 'hapi'
-import Server from '../src/server'
+const test = require('tape')
+const Server = require('../src/server')
 
-const server = Server();
+const server = new Server();
 
 test('Server object is valid', t => {
   console.log(server);

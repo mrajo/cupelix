@@ -1,7 +1,7 @@
 'use strict'
 
-import elasticlunr from 'elasticlunr'
-import fs from 'fs-extra'
+const elasticlunr = require('elasticlunr')
+const fs = require('fs-extra')
 
 const SEARCH_CONFIG_DEFAULTS = {
   fields: {
@@ -15,7 +15,7 @@ const SEARCH_CONFIG_DEFAULTS = {
   expand: true
 }
 
-export function SearchIndex(path) {
+function SearchIndex(path) {
   if (path != null) {
     fs.readJson(path, (err, data) => {
       if (err) {
@@ -58,7 +58,7 @@ SearchIndex.prototype.add = function (doc) {
   this.index.addDoc(doc)
 }
 
-export const loadIndex = (argv) => {
+const loadIndex = (argv) => {
   if (argv.data) {
     try {
       return new SearchIndex(argv.data)
@@ -77,4 +77,9 @@ export const loadIndex = (argv) => {
     }
   }
   return false
+}
+
+module.exports = {
+  SearchIndex: SearchIndex,
+  loadIndex: loadIndex
 }

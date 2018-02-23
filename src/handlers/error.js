@@ -1,15 +1,15 @@
 'use strict'
 
-export const error_route_map = {
+module.exports = {
   path: '/error',
   methods: {
-    get: (request, reply) => {
+    get: (request, h) => {
       const error = {
         code: 500,
         message: 'Generic error',
       }
       request.log(['error'], error)
-      reply({ error: error.message }).code(error.code)
+      return h.response({ error: error.message }).code(error.code)
     }
   }
 }

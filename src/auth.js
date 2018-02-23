@@ -1,41 +1,42 @@
 'use strict'
 
-import fs from 'fs-extra'
-import * as bcrypt from 'bcryptjs'
-import * as auth_basic from 'hapi-auth-basic'
-import { argv } from './cli'
+const fs = require('fs-extra')
+const bcrypt = require('bcryptjs')
+const auth_basic = require('hapi-auth-basic')
+const argv = require('./cli')
 
-export const loadAuthDb = (argv) => {
+const loadAuthDb = (argv) => {
   return fs.readJsonSync(argv.auth).users
 }
 
-const validate = (request, username, password, callback) => {
+const validate = async (request, username, password, h) => {
   const user = request.server.app.users[username]
 
   if (!user) {
-      return callback(null, false)
+      return { credentials: null, isValid: false }
   }
 
   bcrypt.compare(password, user.password, (err, isMatched) => {
-    callback(err, isMatched, { id: user.id, name: user.name })
+    const credentials = { id: user.id, name: user.name };
+    return { isMatched, credentials }
   })
 }
 
-export const auth = {
-  register: (server, options, next) => {
-    server.register(auth_basic, (err) => {
-      if (err) {
-        throw err
-      }
-
-      server.auth.strategy('simple', 'basic', { validateFunc: validate })
+const authPlugin = {
+  name: 'CupelixAuthentication',
+  version: '1.0.0',
+  register: async (server, options) => {
+    try {
+      await server.register(auth_basic)
+      server.auth.strategy('simple', 'basic', { validate })
       server.log([ 'info', 'startup' ], 'Auth plugin registered.')
-      next()
-    })
+    } catch (err) {
+      throw err
+    }
   }
 }
 
-auth.register.attributes = {
-  name: 'CupelixAuthentication',
-  version: '1.0.0'
+module.exports = {
+  loadAuthDb: loadAuthDb,
+  authPlugin: authPlugin
 }

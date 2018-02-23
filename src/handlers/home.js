@@ -1,10 +1,10 @@
 'use strict'
 
-export const home_route_map = {
+module.exports = {
   path: '/',
   methods: {
-    get: (request, reply) => {
-      reply({ data: 'Grittings. Ma nam is Kahlfin.' })
+    get: (request, h) => {
+      return { data: 'Grittings. Ma nam is Kahlfin.' }
     }
   }
 }

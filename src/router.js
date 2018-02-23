@@ -1,6 +1,6 @@
 'use strict'
 
-import { handlers } from './handlers/index'
+const handlers = require('./handlers/index')
 
 const setRoutes = (server, handlers) => {
   Object.keys(handlers).forEach((map) => {
@@ -25,15 +25,13 @@ const setRoutes = (server, handlers) => {
   })
 }
 
-export const router = {
-  register: (server, options, next) => {
+const routerPlugin = {
+  name: 'CupelixRouter',
+  version: '1.0.0',
+  register: async (server, options) => {
     setRoutes(server, handlers)
     server.log([ 'info', 'startup' ], 'Router plugin registered.')
-    next()
   }
 }
 
-router.register.attributes = {
-  name: 'CupelixRouter',
-  version: '1.0.0'
-}
+module.exports = routerPlugin

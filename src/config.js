@@ -1,7 +1,13 @@
 'use strict'
 
-import * as pkg from '../package.json'
+const pkg = require('../package.json')
+const argv = require('./cli')
 
-export default {
+const CONFIG_DEFAULTS = {
   appName: pkg.name
+}
+
+module.exports = {
+  config: Object.assign(CONFIG_DEFAULTS, argv),
+  argv: argv
 }

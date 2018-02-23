@@ -1,6 +1,6 @@
 'use strict'
 
-export const loggingOptions = {
+module.exports = {
   ops: {
     interval: 10000
   },

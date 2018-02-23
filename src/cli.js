@@ -1,6 +1,6 @@
 'use strict'
 
-import { argv as yargs } from 'yargs'
+const yargs = require('yargs').argv
 
 const ARGV_DEFAULTS = {
   env: 'prod',
@@ -16,4 +16,6 @@ if (yargs.env) {
   argv_user.data = `data/${yargs.env}_index.json`
 }
 
-export const argv = Object.assign(ARGV_DEFAULTS, argv_user, yargs)
+const argv = Object.assign(ARGV_DEFAULTS, argv_user, yargs)
+
+module.exports = argv

@@ -1,11 +1,11 @@
 'use strict'
 
-import { home_route_map } from './home'
-import { error_route_map } from './error'
-import { search_route_map } from './search'
-import { user_route_map } from './user'
+const home_route_map = require('./home')
+const error_route_map = require('./error')
+const search_route_map = require('./search')
+const user_route_map = require('./user')
 
-export const handlers = {
+module.exports = {
   home: home_route_map,
   error: error_route_map,
   search: search_route_map,

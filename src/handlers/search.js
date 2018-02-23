@@ -1,6 +1,6 @@
 'use strict'
 
-export const search_route_map = {
+module.exports = {
   path: '/search',
   methods: {
     get: (request, reply) => {
