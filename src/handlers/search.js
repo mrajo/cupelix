@@ -3,11 +3,11 @@
 module.exports = {
   path: '/search',
   methods: {
-    get: (request, reply) => {
-      reply().code(204)
+    get: (request, h) => {
+      h.response().code(204)
     },
     post: {
-      handler: (request, reply) => {
+      handler: (request, h) => {
         const index = request.server.app.index
         let config = request.payload.config
 
@@ -15,7 +15,7 @@ module.exports = {
           config = JSON.parse(config)
         }
 
-        reply(index.search(request.payload.q, config))
+        return index.search(request.payload.q, config)
       },
       options: {
         auth: 'simple',
