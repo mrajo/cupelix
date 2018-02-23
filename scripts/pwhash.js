@@ -1,6 +1,6 @@
 'use strict'
 
-var bcrypt = require('bcryptjs')
+var bcrypt = require('bcrypt')
 
 function prompt(question, callback) {
 	var stdin = process.stdin

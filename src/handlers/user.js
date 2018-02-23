@@ -5,9 +5,9 @@ module.exports = {
   methods: {
     get: {
       handler: (request, h) => {
-        return { data: request.auth.credentials }
+        return { data: request.auth }
       },
-      config: {
+      options: {
         auth: 'simple'
       }
     }

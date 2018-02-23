@@ -28,10 +28,10 @@ class Server {
       })
 
       // authentication
-      await this.server.register(authPlugin)
+      await this.server.register({ plugin: authPlugin })
 
       // routes must be registered after auth
-      await this.server.register(routerPlugin)
+      await this.server.register({ plugin: routerPlugin })
     } catch (err) {
       console.log(err);
     }

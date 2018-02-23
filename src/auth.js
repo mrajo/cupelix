@@ -1,7 +1,7 @@
 'use strict'
 
 const fs = require('fs-extra')
-const bcrypt = require('bcryptjs')
+const bcrypt = require('bcrypt')
 const auth_basic = require('hapi-auth-basic')
 const argv = require('./cli')
 
@@ -13,13 +13,12 @@ const validate = async (request, username, password, h) => {
   const user = request.server.app.users[username]
 
   if (!user) {
-      return { credentials: null, isValid: false }
+    return { isValid: false, credentials: null }
   }
 
-  bcrypt.compare(password, user.password, (err, isMatched) => {
-    const credentials = { id: user.id, name: user.name };
-    return { isMatched, credentials }
-  })
+  const isValid = await bcrypt.compare(password, user.password)
+  const credentials = { id: user.id, name: user.name }
+  return { isValid, credentials }
 }
 
 const authPlugin = {
@@ -29,6 +28,7 @@ const authPlugin = {
     try {
       await server.register(auth_basic)
       server.auth.strategy('simple', 'basic', { validate })
+      server.auth.default('simple')
       server.log([ 'info', 'startup' ], 'Auth plugin registered.')
     } catch (err) {
       throw err

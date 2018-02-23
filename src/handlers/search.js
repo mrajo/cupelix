@@ -17,7 +17,7 @@ module.exports = {
 
         reply(index.search(request.payload.q, config))
       },
-      config: {
+      options: {
         auth: 'simple',
         cors: true
       }

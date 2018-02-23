@@ -3,8 +3,8 @@
 const handlers = require('./handlers/index')
 
 const setRoutes = (server, handlers) => {
-  Object.keys(handlers).forEach((map) => {
-    Object.keys(handlers[map].methods).forEach((method) => {
+  Object.keys(handlers).forEach(map => {
+    Object.keys(handlers[map].methods).forEach(method => {
       server.log([ 'info', 'startup' ], `Setting route at ${method.toUpperCase()} ${handlers[map].path}`)
 
       if (typeof handlers[map].methods[method] == 'function') {
@@ -18,7 +18,7 @@ const setRoutes = (server, handlers) => {
           method: method,
           path: handlers[map].path,
           handler: handlers[map].methods[method].handler,
-          config: handlers[map].methods[method].config
+          options: handlers[map].methods[method].options
         })
       }
     })
