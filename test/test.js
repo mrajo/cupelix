@@ -1,26 +1,26 @@
-'use strict'
+'use strict';
 
-const test = require('tape')
-const Server = require('../src/server')
+const test = require('tape');
+const Server = require('../src/server');
 
 const server = new Server();
 
-test('Server object is valid', t => {
-  console.log(server);
+test('Server object is valid', (t) => {
+  t.plan(1);
   t.ok(server);
-})
+});
 
-// test('Root URL should return 200 response', (t) => {
-//   api.get('/')
-//     .end((err, res) => {
-//       if (err) return done(err)
-//       expect(res.statusCode).to.equal(200)
-//       expect(res.type).to.equal('application/json')
-//       expect(err).to.not.exist
-//       expect(res.body.data).to.equal('Grittings. Ma nam is Kahlfin.')
-//       done()
-//     })
-// });
+test('Root URL should return 200 response', async (t) => {
+  t.plan(2);
+
+  const response = await server.simRequest({
+    method: 'GET',
+    url: '/'
+  });
+
+  t.equals(response.statusCode, 200, 'Status code should be 200');
+  t.deepEqual(response.result, { data: 'Grittings. Ma nam is Kahlfin.' }, 'Return data should be correct');
+});
 
 // describe('Authentication', () => {
 //   it('should return a 401 response on GET /user without credentials', (done) => {

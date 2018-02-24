@@ -4,3 +4,5 @@ dist
 tmp
 *.log
 logs
+.nyc_output
+coverage

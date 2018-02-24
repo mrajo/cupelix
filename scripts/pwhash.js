@@ -1,20 +1,20 @@
-'use strict'
+'use strict';
 
-var bcrypt = require('bcrypt')
+var bcrypt = require('bcrypt');
 
 function prompt(question, callback) {
-	var stdin = process.stdin
-	var stdout = process.stdout
+  var stdin = process.stdin;
+  var stdout = process.stdout;
 
-	stdin.resume()
-	stdout.write(question)
+  stdin.resume();
+  stdout.write(question);
 
-	stdin.once('data', function (data) {
-		callback(data.toString().trim())
-	})
+  stdin.once('data', function (data) {
+    callback(data.toString().trim());
+  });
 }
 
 prompt('Enter password to hash: ', function (input) {
-	console.log(bcrypt.hashSync(input, 10))
-	process.exit()
-})
+  console.log(bcrypt.hashSync(input, 10));
+  process.exit();
+});

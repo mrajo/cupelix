@@ -1,9 +1,9 @@
-'use strict'
+'use strict';
 
-const Server = require('./server')
+const Server = require('./server');
 
 // disable elasticlunr warnings
-console.warn = null
+console.warn = null;
 
-const app = new Server()
-app.start()
+const app = new Server();
+app.start();
