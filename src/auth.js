@@ -21,7 +21,7 @@ const validate = async (request, username, password) => {
 };
 
 const authPlugin = {
-  name: 'CupelixAuthentication',
+  name: 'cupelix-authentication',
   version: '1.0.0',
   register: async (server) => {
     try {

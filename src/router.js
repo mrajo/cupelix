@@ -26,7 +26,7 @@ const setRoutes = (server, handlers) => {
 };
 
 const routerPlugin = {
-  name: 'CupelixRouter',
+  name: 'cupelix-router',
   version: '1.0.0',
   register: async (server) => {
     setRoutes(server, handlers);
