@@ -11,10 +11,10 @@ lint: node_modules
 	eslint -f tap "scripts/**/*.js" | tap-format-spec
 
 test:
-	tape test/*.js | tap-format-spec
+	tape test/*.test.js | tap-format-spec
 
 coverage:
-	nyc tape test/test*.js
+	nyc tape test/*.test.js
 	nyc report --reporter=lcov
 
 testall: node_modules lint test coverage

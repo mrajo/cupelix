@@ -56,7 +56,6 @@ class Server {
 
   async simRequest(injectOptions) {
     try {
-      await this.init(true);
       return await this.server.inject(injectOptions);
     } catch (err) {
       console.log(err);

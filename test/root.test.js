@@ -4,14 +4,12 @@ const test = require('tape');
 const Server = require('../src/server');
 
 const server = new Server();
+(async () => await server.init(true))();
 
-test('Server object is valid', (t) => {
-  t.plan(1);
-  t.ok(server);
-});
+test('Server root: /', async (t) => {
+  t.plan(3);
 
-test('Root URL should return 200 response', async (t) => {
-  t.plan(2);
+  t.ok(server, 'Server object is valid');
 
   const response = await server.simRequest({
     method: 'GET',
