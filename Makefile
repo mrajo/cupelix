@@ -7,11 +7,11 @@ watch: node_modules bundle
 	supervisor dist/app.js
 
 lint: node_modules
-	eslint -f tap "src/**/*.js" | tap-format-spec
-	eslint -f tap "scripts/**/*.js" | tap-format-spec
+	eslint -f tap "src/**/*.js" | tap-spec
+	eslint -f tap "scripts/**/*.js" | tap-spec
 
 test:
-	tape test/*.test.js | tap-format-spec
+	tape test/*.test.js | tap-spec
 
 coverage:
 	nyc tape test/*.test.js >/dev/null
