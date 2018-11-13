@@ -1,6 +1,6 @@
 {
   "name": "Cupelix",
-  "version": "0.0.1",
+  "version": "2.0.0",
   "description": "A search engine web service powered by Elasticlunr.js",
   "main": "src/index.js",
   "author": "mrajo",

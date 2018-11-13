@@ -2,6 +2,7 @@
 
 const test = require("tape");
 const Server = require("../src/server");
+const pkg = require("../package.json");
 
 const server = new Server();
 (async () => server.init(true))();
@@ -19,45 +20,10 @@ test("Server root: /", async t => {
   t.equals(response.statusCode, 200, "Status code should be 200");
   t.deepEqual(
     response.result,
-    { data: "Grittings. Ma nam is Kahlfin." },
+    { data: `${pkg.name} v${pkg.version}` },
     "Return data should be correct"
   );
 });
-
-// describe('Authentication', () => {
-//   it('should return a 401 response on GET /user without credentials', (done) => {
-//     api.get('/user')
-//       .end((err, res) => {
-//         if (err) return done(err)
-//         expect(res.statusCode).to.equal(401)
-//         expect(res.body.message).to.equal('Missing authentication')
-//         done()
-//       })
-//   })
-
-//   it('should return a 401 response on GET /user with incorrect credentials', (done) => {
-//     api.get('/user')
-//       .auth('baduser', 'badpassword')
-//       .end((err, res) => {
-//         if (err) return done(err)
-//         expect(res.statusCode).to.equal(401)
-//         expect(res.body.message).to.equal('Bad username or password')
-//         done()
-//       })
-//   })
-
-//   it('should return an authenticated response on GET /user', (done) => {
-//     api.get('/user')
-//       .set('Accept', 'application/json')
-//       .set('Content-Type', 'application/json')
-//       .auth('testuser', 'testpasswd')
-//       .end((err, res) => {
-//         if (err) return done(err)
-//         expect(res.statusCode).to.equal(200)
-//         done()
-//       })
-//   })
-// })
 
 // describe('Search', () => {
 //   it('should return 204 response on GET /search', (done) => {
