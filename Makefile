@@ -14,8 +14,8 @@ test:
 	tape test/*.test.js | tap-format-spec
 
 coverage:
-	nyc tape test/*.test.js
-	nyc report --reporter=lcov
+	nyc tape test/*.test.js >/dev/null
+	nyc report
 
 testall: node_modules lint test coverage
 

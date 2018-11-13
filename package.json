@@ -6,7 +6,7 @@
   "author": "mrajo",
   "license": "MIT",
   "dependencies": {
-    "bcrypt": "^1.0.3",
+    "bcrypt": "^3.0.0",
     "elasticlunr": "^0.9.5",
     "fs-extra": "^5.0.0",
     "good": "^8.1.0",
