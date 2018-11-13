@@ -9,6 +9,7 @@ watch: node_modules bundle
 lint: node_modules
 	eslint -f tap "src/**/*.js" | tap-spec
 	eslint -f tap "scripts/**/*.js" | tap-spec
+	eslint -f tap "test/**/*.js" | tap-spec
 
 test:
 	tape test/*.test.js | tap-spec

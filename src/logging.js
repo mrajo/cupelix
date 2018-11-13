@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 module.exports = {
   ops: {
@@ -7,98 +7,98 @@ module.exports = {
   reporters: {
     consoleReporter: [
       {
-        module: 'good-squeeze',
-        name: 'Squeeze',
+        module: "good-squeeze",
+        name: "Squeeze",
         args: [
           {
-            log: '*',
-            response: '*'
+            log: "*",
+            response: "*"
           }
         ]
       },
       {
-        module: 'good-console'
+        module: "good-console"
       },
-      'stdout'
+      "stdout"
     ],
     opsFileReporter: [
       {
-        module: 'good-squeeze',
-        name: 'Squeeze',
+        module: "good-squeeze",
+        name: "Squeeze",
         args: [
           {
-            ops: '*'
+            ops: "*"
           }
         ]
       },
       {
-        module: 'good-squeeze',
-        name: 'SafeJson'
+        module: "good-squeeze",
+        name: "SafeJson"
       },
       {
-        module: 'good-file',
-        args: [ './logs/ops.log' ]
+        module: "good-file",
+        args: ["./logs/ops.log"]
       }
     ],
     errorFileReport: [
       {
-        module: 'good-squeeze',
-        name: 'Squeeze',
+        module: "good-squeeze",
+        name: "Squeeze",
         args: [
           {
-            error: '*',
-            request: 'error'
+            error: "*",
+            request: "error"
           }
         ]
       },
       {
-        module: 'good-squeeze',
-        name: 'SafeJson'
+        module: "good-squeeze",
+        name: "SafeJson"
       },
       {
-        module: 'good-file',
-        args: [ './logs/error.log' ]
+        module: "good-file",
+        args: ["./logs/error.log"]
       }
     ],
     trafficFileReport: [
       {
-        module: 'good-squeeze',
-        name: 'Squeeze',
+        module: "good-squeeze",
+        name: "Squeeze",
         args: [
           {
-            request: '*',
+            request: "*",
             response: {
-              exclude: 'error'
+              exclude: "error"
             }
           }
         ]
       },
       {
-        module: 'good-squeeze',
-        name: 'SafeJson'
+        module: "good-squeeze",
+        name: "SafeJson"
       },
       {
-        module: 'good-file',
-        args: [ './logs/traffic.log' ]
+        module: "good-file",
+        args: ["./logs/traffic.log"]
       }
     ],
     serverFileReport: [
       {
-        module: 'good-squeeze',
-        name: 'Squeeze',
+        module: "good-squeeze",
+        name: "Squeeze",
         args: [
           {
-            log: '*'
+            log: "*"
           }
         ]
       },
       {
-        module: 'good-squeeze',
-        name: 'SafeJson'
+        module: "good-squeeze",
+        name: "SafeJson"
       },
       {
-        module: 'good-file',
-        args: [ './logs/server.log' ]
+        module: "good-file",
+        args: ["./logs/server.log"]
       }
     ]
   }

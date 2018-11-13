@@ -1,10 +1,10 @@
-'use strict';
+"use strict";
 
-const fs = require('fs-extra');
-const bcrypt = require('bcrypt');
-const auth_basic = require('hapi-auth-basic');
+const fs = require("fs-extra");
+const bcrypt = require("bcryptjs");
+const authBasic = require("hapi-auth-basic");
 
-const loadAuthDb = (argv) => {
+const loadAuthDb = argv => {
   return fs.readJsonSync(argv.auth).users;
 };
 
@@ -21,14 +21,14 @@ const validate = async (request, username, password) => {
 };
 
 const authPlugin = {
-  name: 'cupelix-authentication',
-  version: '1.0.0',
-  register: async (server) => {
+  name: "cupelix-authentication",
+  version: "1.0.0",
+  register: async server => {
     try {
-      await server.register(auth_basic);
-      server.auth.strategy('simple', 'basic', { validate });
-      server.auth.default('simple');
-      server.log([ 'info', 'startup' ], 'Auth plugin registered.');
+      await server.register(authBasic);
+      server.auth.strategy("simple", "basic", { validate });
+      server.auth.default("simple");
+      server.log(["info", "startup"], "Auth plugin registered.");
     } catch (err) {
       throw err;
     }

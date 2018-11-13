@@ -1,14 +1,14 @@
-'use strict';
+"use strict";
 
 module.exports = {
-  path: '/user',
+  path: "/user",
   methods: {
     get: {
-      handler: (request) => {
+      handler: request => {
         return { data: request.auth };
       },
       options: {
-        auth: 'simple'
+        auth: "simple"
       }
     }
   }

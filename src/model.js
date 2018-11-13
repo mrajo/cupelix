@@ -1,7 +1,7 @@
-'use strict';
+"use strict";
 
-const elasticlunr = require('elasticlunr');
-const fs = require('fs-extra');
+const elasticlunr = require("elasticlunr");
+const fs = require("fs-extra");
 
 const SEARCH_CONFIG_DEFAULTS = {
   fields: {
@@ -26,23 +26,26 @@ function SearchIndex(path) {
     });
   } else {
     this.index = elasticlunr(function () {
-      this.addField('title');
-      this.addField('body');
+      this.addField("title");
+      this.addField("body");
     });
   }
 }
 
 SearchIndex.prototype.save = function (path) {
-  fs.writeJson(path, this.index.toJSON(), (err) => {
+  fs.writeJson(path, this.index.toJSON(), err => {
     console.error(err);
   });
 };
 
 SearchIndex.prototype.search = function (query, config) {
-  const results = this.index.search(query, Object.assign(SEARCH_CONFIG_DEFAULTS, config));
+  const results = this.index.search(
+    query,
+    Object.assign(SEARCH_CONFIG_DEFAULTS, config)
+  );
   let docs = [];
 
-  results.forEach((result) => {
+  results.forEach(result => {
     const doc = this.index.documentStore.getDoc(result.ref);
     docs.push({
       score: result.score,
@@ -58,7 +61,7 @@ SearchIndex.prototype.add = function (doc) {
   this.index.addDoc(doc);
 };
 
-const loadIndex = (argv) => {
+const loadIndex = argv => {
   if (argv.data) {
     try {
       return new SearchIndex(argv.data);
@@ -66,14 +69,14 @@ const loadIndex = (argv) => {
       throw new Error(`Data file not found - ${argv.data}`);
     }
   } else {
-    if ([ 'test', 'dev', 'stage', 'prod' ].includes(argv.env)) {
+    if (["test", "dev", "stage", "prod"].includes(argv.env)) {
       try {
         return new SearchIndex(`data/_${argv.env}.json`);
-      } catch(e) {
+      } catch (e) {
         throw new Error(`Data file not found for environment - ${argv.env}`);
       }
     } else {
-      throw new Error('Illegal environment value');
+      throw new Error("Illegal environment value");
     }
   }
 };

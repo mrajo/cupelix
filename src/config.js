@@ -1,7 +1,7 @@
-'use strict';
+"use strict";
 
-const pkg = require('../package.json');
-const argv = require('./cli');
+const pkg = require("../package.json");
+const argv = require("./cli");
 
 const CONFIG_DEFAULTS = {
   appName: pkg.name

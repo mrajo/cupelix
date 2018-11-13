@@ -1,12 +1,12 @@
-'use strict';
+"use strict";
 
-const Hapi = require('hapi');
-const good = require('good');
-const { config, argv } = require('./config');
-const loggingOptions = require('./logging');
-const { authPlugin, loadAuthDb } = require('./auth');
-const routerPlugin = require('./router');
-const { loadIndex } = require('./model');
+const Hapi = require("hapi");
+const good = require("good");
+const { config, argv } = require("./config");
+const loggingOptions = require("./logging");
+const { authPlugin, loadAuthDb } = require("./auth");
+const routerPlugin = require("./router");
+const { loadIndex } = require("./model");
 
 class Server {
   constructor() {
@@ -48,7 +48,12 @@ class Server {
       await this.init();
       await this.server.start();
       const cfg = this.server.app.config;
-      console.log('%s listening on port %d in %s mode...', cfg.appName, cfg.port, cfg.env);
+      console.log(
+        "%s listening on port %d in %s mode...",
+        cfg.appName,
+        cfg.port,
+        cfg.env
+      );
     } catch (err) {
       console.log(err);
     }

@@ -1,13 +1,16 @@
-'use strict';
+"use strict";
 
-const handlers = require('./handlers/index');
+const handlers = require("./handlers/index");
 
 const setRoutes = (server, handlers) => {
-  Object.keys(handlers).forEach((map) => {
-    Object.keys(handlers[map].methods).forEach((method) => {
-      server.log([ 'info', 'startup' ], `Setting route at ${method.toUpperCase()} ${handlers[map].path}`);
+  Object.keys(handlers).forEach(map => {
+    Object.keys(handlers[map].methods).forEach(method => {
+      server.log(
+        ["info", "startup"],
+        `Setting route at ${method.toUpperCase()} ${handlers[map].path}`
+      );
 
-      if (typeof handlers[map].methods[method] == 'function') {
+      if (typeof handlers[map].methods[method] === "function") {
         server.route({
           method: method,
           path: handlers[map].path,
@@ -26,11 +29,11 @@ const setRoutes = (server, handlers) => {
 };
 
 const routerPlugin = {
-  name: 'cupelix-router',
-  version: '1.0.0',
-  register: async (server) => {
+  name: "cupelix-router",
+  version: "1.0.0",
+  register: async server => {
     setRoutes(server, handlers);
-    server.log([ 'info', 'startup' ], 'Router plugin registered.');
+    server.log(["info", "startup"], "Router plugin registered.");
   }
 };
 

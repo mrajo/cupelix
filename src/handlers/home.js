@@ -1,11 +1,11 @@
-'use strict';
+"use strict";
 
 module.exports = {
-  path: '/',
+  path: "/",
   methods: {
     get: {
       handler: () => {
-        return { data: 'Grittings. Ma nam is Kahlfin.' };
+        return { data: "Grittings. Ma nam is Kahlfin." };
       },
       options: {
         auth: false
