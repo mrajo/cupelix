@@ -7,8 +7,6 @@ const server = new Server();
 (async () => server.init(true))();
 
 test("Authentication: /user", async t => {
-  t.plan(8);
-
   const noAuthResponse = await server.simRequest({
     method: "GET",
     url: "/user"
@@ -72,4 +70,6 @@ test("Authentication: /user", async t => {
     "Bad username or password",
     "Returns proper error message with bad credentials"
   );
+
+  t.end();
 });

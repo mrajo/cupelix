@@ -3,8 +3,13 @@
 module.exports = {
   path: "/search",
   methods: {
-    get: (request, h) => {
-      return h.response().code(204);
+    get: {
+      handler: (request, h) => {
+        return h.response().code(204);
+      },
+      options: {
+        auth: false
+      }
     },
     post: {
       handler: request => {

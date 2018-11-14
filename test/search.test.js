@@ -2,50 +2,47 @@
 
 const test = require("tape");
 const Server = require("../src/server");
-const pkg = require("../package.json");
 
 const server = new Server();
 (async () => server.init(true))();
 
-test("Server root: /", async t => {
-  t.ok(server, "Server object is valid");
-
-  const response = await server.simRequest({
+test("Search: /search", async t => {
+  const getResponse = await server.simRequest({
     method: "GET",
-    url: "/"
+    url: "/search"
   });
 
-  t.equals(response.statusCode, 200, "Status code should be 200");
-  t.deepEqual(
-    response.result,
-    { data: `${pkg.name} v${pkg.version}` },
-    "Return data should be correct"
+  t.equals(
+    getResponse.statusCode,
+    204,
+    "Returns 204 status code on GET /search"
+  );
+
+  t.equals(
+    getResponse.result,
+    null,
+    "Returns no data on GET /search"
+  );
+
+  const postNoAuthResponse = await server.simRequest({
+    method: "POST",
+    url: "/search"
+  });
+
+  t.equals(
+    postNoAuthResponse.statusCode,
+    401,
+    "Returns 401 status code on POST /search without credentials"
+  );
+
+  t.equals(
+    postNoAuthResponse.result.message,
+    "Missing authentication",
+    "Returns proper error message on POST /search without credentials"
   );
 
   t.end();
 });
-
-// describe('Search', () => {
-//   it('should return 204 response on GET /search', (done) => {
-//     api.get('/search')
-//       .end((err, res) => {
-//         if (err) return done(err)
-//         expect(res.statusCode).to.equal(204)
-//         expect(err).to.not.exist
-//         expect(res.body).to.be.empty
-//         done()
-//       })
-//   })
-
-//   it('should return a 401 response on POST /search without credentials', (done) => {
-//     api.post('/search')
-//       .end((err, res) => {
-//         if (err) return done(err)
-//         expect(res.statusCode).to.equal(401)
-//         expect(res.body.message).to.equal('Missing authentication')
-//         done()
-//       })
-//   })
 
 //   it('should return a 401 response on POST /search with incorrect credentials', (done) => {
 //     api.post('/search')
