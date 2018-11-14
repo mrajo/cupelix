@@ -5,5 +5,7 @@ const Server = require("./server");
 // disable elasticlunr warnings
 console.warn = null;
 
-const app = new Server();
-app.start();
+(async () => {
+  const app = new Server();
+  await app.start();
+})();

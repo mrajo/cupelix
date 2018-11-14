@@ -3,71 +3,100 @@
 const test = require("tape");
 const Server = require("../src/server");
 
-const server = new Server();
-(async () => server.init(true))();
+(async () => {
+  const server = new Server();
+  await server.init(true);
 
-test("Search: /search", async t => {
-  const getResponse = await server.simRequest({
-    method: "GET",
-    url: "/search"
+  test("GET /search", async t => {
+    t.plan(2);
+
+    const getResponse = await server.simRequest({
+      method: "GET",
+      url: "/search"
+    });
+
+    t.equals(
+      getResponse.statusCode,
+      204,
+      "Returns 204 status code on GET /search"
+    );
+
+    t.equals(getResponse.result, null, "Returns no data on GET /search");
   });
 
-  t.equals(
-    getResponse.statusCode,
-    204,
-    "Returns 204 status code on GET /search"
-  );
+  test("POST /search (no authentication)", async t => {
+    t.plan(2);
 
-  t.equals(
-    getResponse.result,
-    null,
-    "Returns no data on GET /search"
-  );
+    const postNoAuthResponse = await server.simRequest({
+      method: "POST",
+      url: "/search"
+    });
 
-  const postNoAuthResponse = await server.simRequest({
-    method: "POST",
-    url: "/search"
+    t.equals(
+      postNoAuthResponse.statusCode,
+      401,
+      "Returns 401 status code on POST /search without credentials"
+    );
+
+    t.equals(
+      postNoAuthResponse.result.message,
+      "Missing authentication",
+      "Returns proper error message on POST /search without credentials"
+    );
   });
 
-  t.equals(
-    postNoAuthResponse.statusCode,
-    401,
-    "Returns 401 status code on POST /search without credentials"
-  );
+  test("POST /search (bad authentication)", async t => {
+    t.plan(2);
 
-  t.equals(
-    postNoAuthResponse.result.message,
-    "Missing authentication",
-    "Returns proper error message on POST /search without credentials"
-  );
+    const postBadAuthResponse = await server.simRequest({
+      method: "POST",
+      url: "/search",
+      headers: {
+        Authorization: "Basic dGVzdHVzZXI6d3JvbmdwYXNzd29yZA=="
+      }
+    });
 
-  t.end();
-});
+    t.equals(
+      postBadAuthResponse.statusCode,
+      401,
+      "Returns 401 status code on POST /search with incorrect credentials"
+    );
 
-//   it('should return a 401 response on POST /search with incorrect credentials', (done) => {
-//     api.post('/search')
-//       .auth('baduser', 'badpassword')
-//       .end((err, res) => {
-//         if (err) return done(err)
-//         expect(res.statusCode).to.equal(401)
-//         expect(res.body.message).to.equal('Bad username or password')
-//         done()
-//       })
-//   })
+    t.equals(
+      postBadAuthResponse.result.message,
+      "Bad username or password",
+      "Returns proper error message on POST /search with incorrect credentials"
+    );
+  });
 
-//   it('should successfully return search results on POST', (done) => {
-//     api.post('/search')
-//       .send({ q: 'jack' })
-//       .set('Accept', 'application/json')
-//       .set('Content-Type', 'application/json')
-//       .auth('testuser', 'testpasswd')
-//       .expect('Content-Type', /json/)
-//       .end((err, res) => {
-//         if (err) return done(err)
-//         expect(res).to.exist
-//         expect(res.statusCode).to.equal(200)
-//         expect(res.body.data.length).to.equal(2)
-//         done()
-//       })
-//   })
-// })
+  test("POST /search (authenticated)", async t => {
+    t.plan(3);
+
+    const postGoodAuthResponse = await server.simRequest({
+      method: "POST",
+      url: "/search",
+      credentials: {
+        id: 1,
+        name: "testuser"
+      },
+      payload: {
+        q: "jack"
+      }
+    });
+
+    t.equals(
+      postGoodAuthResponse.statusCode,
+      200,
+      "Returns 200 status code with valid credentials"
+    );
+    t.ok(
+      postGoodAuthResponse.result.data,
+      "Returns data object with valid credentials"
+    );
+    t.equal(
+      postGoodAuthResponse.result.data.length,
+      2,
+      "Response contains proper number of search results"
+    );
+  });
+})();

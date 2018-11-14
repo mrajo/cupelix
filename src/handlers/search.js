@@ -14,7 +14,7 @@ module.exports = {
     post: {
       handler: request => {
         const index = request.server.app.index;
-        let config = request.payload.config;
+        let config = request.payload.config || {};
 
         if (typeof config === "string") {
           config = JSON.parse(config);

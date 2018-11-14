@@ -14,7 +14,6 @@ class Server {
       port: config.port
     });
     this.server.app.config = config;
-    this.server.app.index = loadIndex(argv);
     this.server.app.users = loadAuthDb(argv);
   }
 
@@ -23,6 +22,9 @@ class Server {
   }
 
   async init(silent = false) {
+    // load search index
+    this.server.app.index = await loadIndex(argv);
+
     // plugins
     try {
       // logging
@@ -60,11 +62,7 @@ class Server {
   }
 
   async simRequest(injectOptions) {
-    try {
-      return await this.server.inject(injectOptions);
-    } catch (err) {
-      console.log(err);
-    }
+    return this.server.inject(injectOptions);
   }
 }
 
