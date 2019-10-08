@@ -1,0 +1,10 @@
+{
+  "rulesDirectory": ["node_modules/tslint-microsoft-contrib"],
+  "extends": ["tslint-microsoft-contrib/recommended"],
+  "rules": {
+    "no-relative-imports": false,
+    "no-backbone-get-set-outside-model": false,
+    "no-cookies": false,
+    "export-name": false
+  }
+}
